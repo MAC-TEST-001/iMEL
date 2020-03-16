@@ -6,7 +6,10 @@ import { Container} from "shards-react";
 import NavBarMarketDropdown from "./NavBarMarketDropdown";
 
 
+
 const MainNavbar = ({ layout, stickyTop }) => {
+  
+
   const classes = classNames(
     "main-navbar",
     "bg-white"
@@ -16,7 +19,7 @@ const MainNavbar = ({ layout, stickyTop }) => {
   return (
     <div className={classes}>
       <Container className="p-0">
-          <NavBarMarketDropdown/>
+          <NavBarMarketDropdown  />
       </Container>
     </div>
   );

@@ -28,7 +28,8 @@ export default function CustomGrid() {
     const classes = useStyles();
     const [state, setState] = React.useState({
         columns: [
-          { title: 'Name', field: 'name' },
+          { title: 'Id', field: 'id',hidden:'true' },
+          { title: 'Name', field: 'name'},
           { title: 'Surname', field: 'surname' },
           { title: 'Birth Year', field: 'birthYear', type: 'numeric' },
           {
@@ -38,8 +39,9 @@ export default function CustomGrid() {
           },
         ],
         data: [
-          { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
+          { id:1, name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
           {
+            id:2,
             name: 'Zerya Betül',
             surname: 'Baran',
             birthYear: 2017,
@@ -64,7 +66,8 @@ export default function CustomGrid() {
               setState(prevState => {
                 const data = [...prevState.data];
                 data.push(newData);
-                changesInData.added.push(newData);
+                var {tableData ,...rest} = newData;
+                changesInData.added.push(rest);
                 return { ...prevState, data };
               });
             }, 600);
@@ -77,10 +80,11 @@ export default function CustomGrid() {
                 setState(prevState => {
                   const data = [...prevState.data];
                   data[data.indexOf(oldData)] = newData;
+                  var {tableData ,...rest} = newData;
                   if(changesInData.updated.includes(oldData)){
-                     changesInData.updated[changesInData.updated.indexOf(oldData)]=newData;
+                     changesInData.updated[changesInData.updated.indexOf(oldData)]=rest;
                   }else{
-                    changesInData.updated.push(newData);
+                    changesInData.updated.push(rest);
                   }
                   return { ...prevState, data };
                 });
@@ -94,7 +98,8 @@ export default function CustomGrid() {
               setState(prevState => {
                 const data = [...prevState.data];
                 data.splice(data.indexOf(oldData), 1);
-                changesInData.deleted.push(oldData);
+                var {tableData ,...rest} = oldData;
+                changesInData.deleted.push(rest);
                 return { ...prevState, data };
               });
             }, 600);

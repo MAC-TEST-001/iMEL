@@ -30,6 +30,7 @@ export default function NavBarMarketDropdown() {
 
   const handleChangeAffeliate = event => {
     setAffeliate(event.target.value);
+   
   };
   const handleChangeConfig = event => {
     setCongigType(event.target.value);
