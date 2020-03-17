@@ -7,6 +7,8 @@ import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
 import Select from '@material-ui/core/Select';
 
+import {useDispatch} from 'react-redux';
+
 const useStyles = makeStyles(theme => ({
   formControl: {
     margin: theme.spacing(1),
@@ -18,6 +20,10 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function NavBarMarketDropdown() {
+ 
+  
+  const dispatch =useDispatch();
+  
   const classes = useStyles();
   const [affeliate, setAffeliate] = React.useState('');
   const [configtype, setCongigType] = React.useState('');
@@ -30,10 +36,12 @@ export default function NavBarMarketDropdown() {
 
   const handleChangeAffeliate = event => {
     setAffeliate(event.target.value);
+    dispatch({type:'Affeliate', value:event.target.value});
    
   };
   const handleChangeConfig = event => {
     setCongigType(event.target.value);
+    dispatch({type:'Config',value :event.target.value});
   };
 
   return (

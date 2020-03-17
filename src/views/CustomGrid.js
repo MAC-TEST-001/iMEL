@@ -5,6 +5,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
 
+import {useSelector} from 'react-redux';
+
 const useStyles = makeStyles(theme => ({
     root: {
       flexGrow: 1,
@@ -25,6 +27,8 @@ let changesInData = {
   }
 
 export default function CustomGrid() {
+   let affeliateName = useSelector((state)=>state.affeliate);
+   let configName = useSelector((state)=>state.config);
     const classes = useStyles();
     const [state, setState] = React.useState({
         columns: [
@@ -35,7 +39,7 @@ export default function CustomGrid() {
           {
             title: 'Birth Place',
             field: 'birthCity',
-            lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
+            lookup: { 'İstanbul': 'İstanbul', 'Şanlıurfa': 'Şanlıurfa' },
           },
         ],
         data: [
@@ -67,7 +71,9 @@ export default function CustomGrid() {
                 const data = [...prevState.data];
                 data.push(newData);
                 var {tableData ,...rest} = newData;
-                changesInData.added.push(rest);
+
+                changesInData.added.push({...rest,affeliateName,configName});
+                
                 return { ...prevState, data };
               });
             }, 600);
@@ -82,9 +88,9 @@ export default function CustomGrid() {
                   data[data.indexOf(oldData)] = newData;
                   var {tableData ,...rest} = newData;
                   if(changesInData.updated.includes(oldData)){
-                     changesInData.updated[changesInData.updated.indexOf(oldData)]=rest;
+                     changesInData.updated[changesInData.updated.indexOf(oldData)]={...rest,affeliateName,configName};
                   }else{
-                    changesInData.updated.push(rest);
+                    changesInData.updated.push({...rest,affeliateName,configName});
                   }
                   return { ...prevState, data };
                 });
@@ -99,7 +105,9 @@ export default function CustomGrid() {
                 const data = [...prevState.data];
                 data.splice(data.indexOf(oldData), 1);
                 var {tableData ,...rest} = oldData;
-                changesInData.deleted.push(rest);
+                console.log(affeliateName);
+                console.log(configName);
+                changesInData.deleted.push({...rest,affeliateName,configName});
                 return { ...prevState, data };
               });
             }, 600);
