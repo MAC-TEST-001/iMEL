@@ -7,6 +7,11 @@ import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
 import Select from '@material-ui/core/Select';
 
+//import {FileUploader,FileUploaderButton } from 'carbon-components'
+import { FileUploader,FileUploaderButton ,settings} from 'carbon-components-react';
+import 'carbon-components/scss/globals/scss/styles.scss';
+
+
 const useStyles = makeStyles(theme => ({
   formControl: {
     margin: theme.spacing(1),
@@ -99,9 +104,25 @@ export default function NavBarMarketDropdown() {
         </FormControl>
 
         <FormControl variant="outlined" className={classes.formControl}>
-        <Button variant="contained" color="primary">
+        {/* <Button variant="contained" color="primary">
            Initial Load
-        </Button>
+        </Button> */}
+
+        <FileUploaderButton
+  accept={[]}
+  buttonKind="primary"
+  className="bob"
+  disableLabelChanges={false}
+  disabled={false}
+  labelText="Add files"
+  multiple
+  name=""
+  onChange={function noRefCheck(){}}
+  onClick={function noRefCheck(){}}
+  role="button"
+  tabIndex={0}
+/>
+
         </FormControl>
       
      
