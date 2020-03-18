@@ -7,6 +7,10 @@ import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
 import Select from '@material-ui/core/Select';
 
+import { FileUploaderButton} from 'carbon-components-react';
+
+import 'carbon-components/scss/globals/scss/styles.scss';
+
 import {useDispatch} from 'react-redux';
 
 const useStyles = makeStyles(theme => ({
@@ -19,6 +23,16 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+const handleFile =(fileName,e)=>{
+  if(!fileName.includes('.xlsx')){
+    alert('Please upload Excell file');
+    //console.log(e.target.file);
+    e.target.labelText='Add File'
+  }else {
+    alert(fileName);
+  }
+
+};
 export default function NavBarMarketDropdown() {
  
   
@@ -43,7 +57,7 @@ export default function NavBarMarketDropdown() {
     setCongigType(event.target.value);
     dispatch({type:'Config',value :event.target.value});
   };
-
+  
   return (
     <div style ={{
       display:'flex',
@@ -108,9 +122,35 @@ export default function NavBarMarketDropdown() {
         </FormControl>
 
         <FormControl variant="outlined" className={classes.formControl}>
-        <Button variant="contained" color="primary">
+        {/* <Button variant="contained" color="primary">
            Initial Load
-        </Button>
+        </Button> */}
+        {/* <FileUploader
+    accept={[
+      '.jpg',
+      '.png'
+    ]}
+    buttonKind="primary"
+    buttonLabel="Add files"
+    filenameStatus="edit"
+    iconDescription="Clear file"
+    // labelDescription="only .jpg files at 500mb or less"
+    // labelTitle="Upload"
+  /> */}
+   <FileUploaderButton
+accept={['.xlxn']}
+buttonKind="primary"
+className="bob"
+disableLabelChanges={true}
+disabled={false}
+labelText="Add file"
+multiple
+name=""
+onChange={function noRefCheck(e){handleFile(e.target.value,e)}}
+onClick={function noRefCheck(){}}
+role="button"
+tabIndex={0}
+/>
         </FormControl>
       
      
