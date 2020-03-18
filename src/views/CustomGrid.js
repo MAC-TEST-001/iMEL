@@ -43,13 +43,13 @@ export default function CustomGrid() {
           },
         ],
         data: [
-          { id:1, name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
+          { id:1, name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 'İstanbul' },
           {
             id:2,
             name: 'Zerya Betül',
             surname: 'Baran',
             birthYear: 2017,
-            birthCity: 34,
+            birthCity: 'İstanbul',
           },
         ],
       });
@@ -121,13 +121,13 @@ export default function CustomGrid() {
       justifyContent:'center',
       flexWrap:'wrap'
     }}>
-    <FormControl variant="outlined" className={classes.formControl} style ={{
+    {/* <FormControl variant="outlined" className={classes.formControl} style ={{
       padding:'10px'
     }}>
         <Button variant="contained" color="primary">
            Add
         </Button>
-        </FormControl>
+        </FormControl> */}
 
         <FormControl variant="outlined" className={classes.formControl} style ={{
       padding:'10px'
@@ -137,13 +137,13 @@ export default function CustomGrid() {
         </Button>
         </FormControl>
 
-        <FormControl variant="outlined" className={classes.formControl} style ={{
+        {/* <FormControl variant="outlined" className={classes.formControl} style ={{
       padding:'10px'
     }}>
         <Button variant="contained" color="primary">
            Cancel
         </Button>
-        </FormControl>
+        </FormControl> */}
 
         <FormControl variant="outlined" className={classes.formControl} style ={{
       padding:'10px'
