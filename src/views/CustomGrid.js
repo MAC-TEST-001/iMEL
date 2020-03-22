@@ -3,9 +3,14 @@ import MaterialTable from 'material-table';
 
 import { makeStyles } from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
-import Button from '@material-ui/core/Button';
+//import Button from '@material-ui/core/Button';
 
 import {useSelector} from 'react-redux';
+
+
+import { Button } from 'carbon-components-react';
+
+import 'carbon-components/scss/globals/scss/styles.scss';
 
 const useStyles = makeStyles(theme => ({
     root: {
