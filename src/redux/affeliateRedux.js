@@ -19,3 +19,13 @@ export  function* watchConfigAsync(){
 }
 
 
+function* userAsync(action){
+    yield put({type:'User_async',value:action.value})
+    console.log(action.value)
+}
+
+export  function* watchUserAsync(){
+    yield takeLatest('User',userAsync)
+}
+
+

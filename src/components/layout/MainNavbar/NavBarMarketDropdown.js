@@ -1,11 +1,14 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import axios from 'axios';
+import { makeStyles , useTheme } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 // import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 //import Button from '@material-ui/core/Button';
 import Select from '@material-ui/core/Select';
+import Chip from '@material-ui/core/Chip';
+import Input from '@material-ui/core/Input';
 
 import { FileUploaderButton ,Button } from 'carbon-components-react';
 
@@ -21,7 +24,38 @@ const useStyles = makeStyles(theme => ({
   selectEmpty: {
     marginTop: theme.spacing(2),
   },
+  chips: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  chip: {
+    margin: 2,
+  }
 }));
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 250,
+    },
+  },
+};
+
+const names = [
+  'Oliver Hansen',
+  'Van Henry',
+  'April Tucker',
+  'Ralph Hubbard',
+  'Omar Alexander',
+  'Carlos Abbott',
+  'Miriam Wagner',
+  'Bradley Wilkerson',
+  'Virginia Andrews',
+  'Kelly Snyder',
+];
+
 
 const handleFile =(fileName,e)=>{
   if(!fileName.includes('.xlsx')){
@@ -29,24 +63,48 @@ const handleFile =(fileName,e)=>{
     //console.log(e.target.file);
     e.target.labelText='Add File'
   }else {
-    alert(fileName);
+    console.log(e.target.files[0]);
+    const data = new FormData();
+    data.append('file', e.target.files[0]);
+    console.log(data);
+    axios.post("http://localhost:8000/upload", data, { // receive two parameter endpoint url ,form data 
+  })
+  .then(res => { // then print response status
+    alert(res.statusText)
+  }).catch(err =>{ alert('Error uploading File ')})
+    // alert(fileName);
   }
 
 };
+
+function getStyles(name, personName, theme) {
+  return {
+    fontWeight:
+      personName.indexOf(name) === -1
+        ? theme.typography.fontWeightRegular
+        : theme.typography.fontWeightMedium,
+  };
+}
 export default function NavBarMarketDropdown() {
  
   
   const dispatch =useDispatch();
   
   const classes = useStyles();
+  const theme = useTheme();
   const [affeliate, setAffeliate] = React.useState('');
   const [configtype, setCongigType] = React.useState('');
+  const [personName, setPersonName] = React.useState([]);
 
   const inputLabel = React.useRef(null);
   const [labelWidth, setLabelWidth] = React.useState(0);
   React.useEffect(() => {
     setLabelWidth(inputLabel.current.offsetWidth);
   }, []);
+
+  const handleChange = event => {
+    setPersonName(event.target.value);
+  };
 
   const handleChangeAffeliate = event => {
     setAffeliate(event.target.value);
@@ -114,6 +172,32 @@ export default function NavBarMarketDropdown() {
           {/* <MenuItem value={"ITTC"}>ITTC</MenuItem> */}
         </Select>
         </FormControl>
+
+        <FormControl variant="outlined" className={classes.formControl}>
+        <InputLabel id="demo-simple-select-chip-label">Tab</InputLabel>
+        <Select
+          labelId="demo-simple-select-chip-label"
+          id="demo-simple-select-chip"
+          multiple
+          value={personName}
+          onChange={handleChange}
+          input={<Input id="select-multiple-chip" />}
+          renderValue={selected => (
+            <div className={classes.chips}>
+              {selected.map(value => (
+                <Chip key={value} label={value} className={classes.chip} />
+              ))}
+            </div>
+          )}
+          MenuProps={MenuProps}
+        >
+          {names.map(name => (
+            <MenuItem key={name} value={name} style={getStyles(name, personName, theme)}>
+              {name}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
 
         <FormControl variant="outlined" className={classes.formControl}>
         <Button variant="contained" color="primary">

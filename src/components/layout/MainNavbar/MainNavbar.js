@@ -7,9 +7,9 @@ import NavBarMarketDropdown from "./NavBarMarketDropdown";
 
 
 
-const MainNavbar = ({ layout, stickyTop }) => {
+const MainNavbar = ({ layout, stickyTop,...rest }) => {
   
-
+  
   const classes = classNames(
     "main-navbar",
     "bg-white"
@@ -19,6 +19,7 @@ const MainNavbar = ({ layout, stickyTop }) => {
   return (
     <div className={classes}>
       <Container className="p-0">
+ <div align='center' >Hello User</div>
           <NavBarMarketDropdown  />
       </Container>
     </div>

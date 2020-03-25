@@ -12,6 +12,7 @@ import CustomGrid from './CustomGrid'
 import tabDetails from '../data/tabsDetails'
 
 function TabPanel(props) {
+  
   const { children, value, index, ...other } = props;
 
   return (

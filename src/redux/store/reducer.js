@@ -1,6 +1,7 @@
 const initialState ={
     affeliate:null,
-    config:null
+    config:null,
+    user:null
 
 }
 
@@ -13,6 +14,11 @@ const reducer =(state =initialState,action) =>{
        
     }
     if(action.type==='Config_async'){
+        newState.config = action.value;
+        console.log(action.value)
+        
+    }
+    if(action.type==='User_async'){
         newState.config = action.value;
         console.log(action.value)
         
