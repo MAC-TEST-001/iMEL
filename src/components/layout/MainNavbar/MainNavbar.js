@@ -4,6 +4,7 @@ import classNames from "classnames";
 import { Container} from "shards-react";
 
 import NavBarMarketDropdown from "./NavBarMarketDropdown";
+import UserNavbar from './userNavbar'
 
 
 
@@ -17,12 +18,15 @@ const MainNavbar = ({ layout, stickyTop,...rest }) => {
   );
 
   return (
+    <React.Fragment>
+    <UserNavbar></UserNavbar>
     <div className={classes}>
       <Container className="p-0">
- <div align='center' >Hello User</div>
+ {/* <div align='center' >Hello User</div> */}
           <NavBarMarketDropdown  />
       </Container>
     </div>
+    </React.Fragment>
   );
 };
 
