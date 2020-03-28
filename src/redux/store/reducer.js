@@ -1,7 +1,9 @@
 const initialState ={
     affeliate:null,
     config:null,
-    user:null
+    user:null,
+    render:false,
+    loaddata:false
 
 }
 
@@ -19,7 +21,12 @@ const reducer =(state =initialState,action) =>{
         
     }
     if(action.type==='User_async'){
-        newState.config = action.value;
+        newState.user = action.value;
+        console.log(action.value)
+        
+    }
+    if(action.type==='Loaddata_async'){
+        newState.loaddata = true;
         console.log(action.value)
         
     }

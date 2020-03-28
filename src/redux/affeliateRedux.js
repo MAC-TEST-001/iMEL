@@ -28,4 +28,11 @@ export  function* watchUserAsync(){
     yield takeLatest('User',userAsync)
 }
 
+function* loaddataAsync(action){
+    yield put({type:'Loaddata_async',value:action.value})
+    console.log(action.value)
+}
 
+export  function* watchLoaddataAsync(){
+    yield takeLatest('Loaddata',loaddataAsync)
+}

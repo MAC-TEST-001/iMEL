@@ -3,6 +3,7 @@ import MaterialTable from 'material-table';
 
 import { makeStyles } from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
+import Skeleton from '@material-ui/lab/Skeleton';
 //import Button from '@material-ui/core/Button';
 
 import {useSelector} from 'react-redux';
@@ -58,7 +59,30 @@ export default function CustomGrid() {
           },
         ],
       });
+
+      if(state !==null){
+        return (
+          <div>
+      <Skeleton />
+      <Skeleton animation={false} />
+      <Skeleton animation="wave" />
+      <Skeleton />
+      <Skeleton animation={false} />
+      <Skeleton animation="wave" />
+      <Skeleton />
+      <Skeleton animation={false} />
+      <Skeleton animation="wave" />
+      <Skeleton />
+      <Skeleton animation={false} />
+      <Skeleton animation="wave" />
+      <Skeleton />
+      <Skeleton animation={false} />
+      <Skeleton animation="wave" />
+          </div>
+        )
+      }
     return (
+      
         <React.Fragment>
           <div style={{ maxWidth: "100%" }}>
              <MaterialTable

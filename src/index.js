@@ -7,7 +7,7 @@ import {Provider}  from 'react-redux';
 import {createStore , applyMiddleware  } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 
-import {watchAffeliateAsync , watchConfigAsync} from './redux/affeliateRedux';
+import {watchAffeliateAsync , watchConfigAsync ,watchLoaddataAsync,watchUserAsync} from './redux/affeliateRedux';
 
 import reducer from './redux/store/reducer'
 
@@ -19,6 +19,8 @@ const store = createStore(reducer,applyMiddleware(sagaMiddleware));
 
 sagaMiddleware.run(watchAffeliateAsync);
 sagaMiddleware.run(watchConfigAsync);
+sagaMiddleware.run(watchLoaddataAsync);
+sagaMiddleware.run(watchUserAsync);
 
 
 
